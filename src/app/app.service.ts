@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import {AppStore} from './models/app-store';
 import {Account} from './models/account';
 
-const BASE_URL = 'http://localhost:3400/accounts/';
+const BASE_URL = 'http://localhost:3400/accounts';
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
 @Injectable()
@@ -20,6 +20,16 @@ export class AppService {
 
   loadAccounts() {
     this.http.get(BASE_URL)
+      .map(res => res.json())
+      .map(payload => ({ type: 'ADD', payload }))
+      .subscribe(action => {
+        console.log("loadAccounts|action:%o", action);
+        this.store.dispatch(action)
+      });
+  }
+
+  searchAccounts(queryString: string) {
+    this.http.get(BASE_URL+'?accountNumber='+queryString)
       .map(res => res.json())
       .map(payload => ({ type: 'ADD', payload }))
       .subscribe(action => {
