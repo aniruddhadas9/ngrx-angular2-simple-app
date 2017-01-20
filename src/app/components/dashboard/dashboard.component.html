@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-block">
+    All the accounts
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" *ngFor='let account of accounts | async ' style="border: 1px solid #61ffe9">
+    <div class="col">{{account.id}}</div>
+    <div class="col">{{account.accountNumber}}</div>
+    <div class="col">{{account.firstName}}</div>
+    <div class="col">{{account.lastName}}</div>
+    <div class="col">{{account.phoneNumber}}</div>
+    <div class="col">{{account.email}}</div>
+    <div class="col">{{account.streetAddress}}</div>
+    <div class="col">{{account.apt}}</div>
+    <div class="col">{{account.zip}}</div>
+    <div class="col">{{account.userId}}</div>
+    <div class="col">{{account.error}}</div>
+    <div class="col"><a>edit</a></div>
+    <div class="col"><a>Delete</a></div>
+  </div>
+
+</div>
