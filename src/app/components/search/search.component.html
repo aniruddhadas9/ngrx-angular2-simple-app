@@ -1,77 +1,58 @@
 <div class="container">
-  <form [formGroup]="searchForm" novalidate (ngSubmit)="searchAccount(searchForm.value, searchForm.valid)">
 
-    <div class="container">
 
-      <div class="row">
-        <pre>2222-->{{account | async}}</pre>
-      </div>
-      <div class="row" [hidden]="!message">
-        <div class="alert alert-danger" role="alert">
-          <strong>ERROR</strong>{{message}}
+  <div class="container">
+
+
+      <div class="card">
+        <div class="card-header">
+          Search Account
+        </div>
+        <div class="card-block">
+          <form [formGroup]="searchAccount" novalidate (ngSubmit)="searchAccountSubmit(searchAccount.value, searchAccount.valid)"
+                class="form-inline">
+
+            <label class="sr-only" for="inlineFormInput">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" formControlName="firstName" placeholder="Full name">
+
+            <label class="sr-only" for="inlineFormInputGroup">Account Number</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon">A/C</div>
+              <input type="text" class="form-control" formControlName="accountNumber" id="inlineFormInputGroup" placeholder="Account Number">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
         </div>
       </div>
 
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="firstName">First Name</label>
-        <div class="col-10">
-          <input class="form-control" class="form-control" id="firstName" type="text" formControlName="firstName" name="firstName" autocomplete="false">
-        </div>
+
+    <div class="card">
+      <div class="card-header">
+        Result ({{accounts.length | async}})
       </div>
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="lastName">Last Name</label>
-        <div class="col-10">
-          <input class="form-control" id="lastName" type="text" formControlName="lastName" name="lastName"
-                 autocomplete="false">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="phoneNumber">Phone Number</label>
-        <div class="col-10">
-          <input class="form-control" id="phoneNumber" formControlName="phoneNumber" name="phoneNumber" type="text" autocomplete="false"/>
+      <div class="card-block">
+        <div class="container">
+          <div class="row" *ngFor='let account of accounts | async ' style="border: 1px solid #f4f4f4">
+            <div class="col">{{account.id}}</div>
+            <div class="col">{{account.accountNumber}}</div>
+            <div class="col">{{account.firstName}}</div>
+            <div class="col">{{account.lastName}}</div>
+            <div class="col">{{account.phoneNumber}}</div>
+            <div class="col">{{account.email}}</div>
+            <div class="col">{{account.streetAddress}}</div>
+            <div class="col">{{account.apt}}</div>
+            <div class="col">{{account.zip}}</div>
+            <div class="col">{{account.userId}}</div>
+            <div class="col">{{account.error}}</div>
+            <div class="col"><a>edit</a></div>
+            <div class="col"><a>Delete</a></div>
+          </div>
+
         </div>
       </div>
     </div>
 
-    <div class="container">
+  </div>
 
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="streetAddress">Street Address</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="streetAddress" formControlName="streetAddress" autocomplete="false">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="apt">Apt. Suite, Building</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="apt" formControlName="apt">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="zip">Zip Code</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="zip" maxlength="5" autocomplete="false" formControlName="zip">
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="accountNumber">Account Number</label>
-        <div class="col-10">
-          <input class="form-control" id="accountNumber" type="text" formControlName="accountNumber" name="accountNumber" autocomplete="false">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-2 col-form-label" for="email">Email or username</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="email" formControlName="email" name="email" autocomplete="false">
-        </div>
-      </div>
-      <div class="form-group row">
-        <button type="submit" class="btn btn-primary">Lookup Account</button>
-        <button class="btn btn-warning">Clear Fields</button>
-      </div>
-    </div>
-
-  </form>
 </div>

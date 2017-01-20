@@ -18,7 +18,7 @@ export class AddComponent implements OnInit {
   public accounts: Observable<Account[]>;
   private account: Account;
 
-  public searchForm: FormGroup; // our model driven form
+  public addAccount: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   public events: any[] = []; // use later to display form changes
   public message: string = ''; // toDisplay error message
@@ -34,7 +34,7 @@ export class AddComponent implements OnInit {
     this.accounts = this.store.select('accounts');
 
 
-    this.searchForm = new FormGroup({
+    this.addAccount = new FormGroup({
       phoneNumber: new FormControl(''),
       firstName: new FormControl(''),
       lastName: new FormControl(''),

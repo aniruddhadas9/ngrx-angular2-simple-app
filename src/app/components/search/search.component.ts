@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit {
   public accounts: Observable<Account[]>;
   private account: Account;
 
-  public searchForm: FormGroup; // our model driven form
+  public searchAccount: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
   public events: any[] = []; // use later to display form changes
   public message: string = ''; // toDisplay error message
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     this.accounts = this.store.select('accounts');
 
 
-    this.searchForm = new FormGroup({
+    this.searchAccount = new FormGroup({
       phoneNumber: new FormControl(''),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -55,13 +55,11 @@ export class SearchComponent implements OnInit {
 
   }
 
-  private searchAccount(model: Account, isValid: boolean) {
-    model.userId = "userid";
-    model.ticketNumber = "0012100";
+  private searchAccountSubmit(model: Account, isValid: boolean) {
     console.log('formdata|account: %o|isValid:%o', model, isValid);
     if (isValid) {
-      this.appService.saveAccount(model);
-      this.store.dispatch(go(['dashboard', { routeParam: 1 }], { query: 'string' }));
+      this.appService.searchAccounts(model.accountNumber);
+      //this.store.dispatch(go(['dashboard', { routeParam: 1 }], { query: 'string' }));
     } else {
       this.message = "Filled etails are not correct! please correct...";
     }
