@@ -15,8 +15,8 @@ import {go} from "@ngrx/router-store";
 })
 export class AddComponent implements OnInit {
 
-  public accounts: Observable<Account[]>;
-  private account: Account;
+  //public accounts: Observable<Account[]>;
+  //private account: Account;
 
   public addAccount: FormGroup; // our model driven form
   public submitted: boolean; // keep track on whether form is submitted
@@ -31,7 +31,7 @@ export class AddComponent implements OnInit {
               private appService: AppService,
               private store: Store<AppStore>) {
 
-    this.accounts = this.store.select('accounts');
+    //this.accounts = this.store.select('accounts');
 
 
     this.addAccount = new FormGroup({
@@ -47,14 +47,14 @@ export class AddComponent implements OnInit {
       zip: new FormControl('')
     });
 
-    this.accounts.subscribe(data => console.log('search|data:%o', data));
+    //this.accounts.subscribe(data => console.log('search|data:%o', data));
   }
 
   ngOnInit(): void {
 
   }
 
-  private searchAccount(model: Account, isValid: boolean) {
+  private addAccountSubmit(model: Account, isValid: boolean) {
     model.userId = "userid";
     model.ticketNumber = "0012100";
     console.log('formdata|account: %o|isValid:%o', model, isValid);

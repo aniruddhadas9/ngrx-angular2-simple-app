@@ -1,11 +1,8 @@
 <div class="container">
-  <form [formGroup]="newAccount" novalidate (ngSubmit)="searchAccount(newAccount.value, newAccount.valid)">
+  <form [formGroup]="addAccount" novalidate (ngSubmit)="addAccountSubmit(addAccount.value, addAccount.valid)">
 
     <div class="container">
 
-      <div class="row">
-        <pre>2222-->{{account | async}}</pre>
-      </div>
       <div class="row" [hidden]="!message">
         <div class="alert alert-danger" role="alert">
           <strong>ERROR</strong>{{message}}
